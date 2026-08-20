@@ -453,3 +453,16 @@ summary::-webkit-details-marker{display:none}details p{color:var(--muted);line-h
   .guide-section, .legal-section { padding:28px 24px; }
   .page-icon { width:76px; height:76px; border-radius:18px; }
 }
+.brand-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.footer-brand img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
