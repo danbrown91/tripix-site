@@ -382,3 +382,74 @@ summary::-webkit-details-marker{display:none}details p{color:var(--muted);line-h
   .story-screen.active { display:block; }
   .story-step { opacity:1; transform:none; }
 }
+
+
+/* V3 — brand, support, legal and about pages */
+.brand { display:flex; align-items:center; gap:9px; }
+.brand-icon { width:30px; height:30px; border-radius:8px; box-shadow:0 3px 10px rgba(16,42,56,.12); }
+.footer-brand { display:flex; align-items:center; gap:8px; }
+.footer-brand img { width:28px; height:28px; border-radius:7px; }
+.page-icon { width:92px; height:92px; border-radius:22px; box-shadow:0 18px 42px rgba(16,42,56,.16); margin:0 auto 26px; }
+.support-page .page-head, .legal-page .page-head { text-align:center; }
+.section-heading.compact { margin-bottom:42px; }
+.section-heading.compact h2 { font-size:clamp(38px,5vw,64px); }
+.support-guides { margin:30px 0 120px; }
+.guide-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.guide-card { background:#fff; border:1px solid var(--line); border-radius:30px; padding:34px; min-height:285px; display:flex; flex-direction:column; transition:transform .22s ease, box-shadow .22s ease; }
+.guide-card:hover { transform:translateY(-4px); box-shadow:0 24px 60px rgba(16,42,56,.10); }
+.guide-number { font-size:12px; font-weight:800; letter-spacing:.15em; color:var(--sage); margin-bottom:auto; }
+.guide-card h3 { font-size:32px; letter-spacing:-.04em; margin:28px 0 12px; }
+.guide-card p { color:var(--muted); line-height:1.55; }
+.guide-link { font-weight:700; color:var(--teal); margin-top:14px; }
+.faq-section { max-width:920px; margin:0 auto 100px; }
+.faq-category { margin-bottom:44px; }
+.faq-category h3 { font-size:24px; letter-spacing:-.03em; margin-bottom:12px; color:var(--teal); }
+.faq-category details { background:#fff; border:1px solid var(--line); border-radius:20px; padding:0 24px; margin:10px 0; }
+.faq-category summary { cursor:pointer; padding:22px 0; font-size:18px; font-weight:720; list-style:none; }
+.faq-category summary::-webkit-details-marker { display:none; }
+.faq-category summary::after { content:'+'; float:right; color:var(--teal); font-size:22px; }
+.faq-category details[open] summary::after { content:'–'; }
+.faq-category details p { color:var(--muted); line-height:1.6; padding:0 34px 22px 0; }
+.contact-card { margin-top:70px; }
+.legal-stack { max-width:900px; margin:0 auto; display:grid; gap:18px; }
+.legal-section { background:#fff; border:1px solid var(--line); border-radius:26px; padding:34px 38px; }
+.legal-section h2 { font-size:27px; letter-spacing:-.035em; margin-bottom:14px; }
+.legal-section p, .legal-section li { color:var(--muted); line-height:1.65; font-size:17px; }
+.legal-section ul { padding-left:22px; margin-top:10px; }
+.legal-section a { color:var(--teal); text-decoration:underline; text-underline-offset:3px; }
+.about-page { max-width:1180px; margin:auto; }
+.about-hero { text-align:center; max-width:900px; margin:30px auto 120px; }
+.about-icon { width:150px; height:150px; border-radius:34px; box-shadow:0 28px 64px rgba(16,42,56,.16); margin:0 auto 36px; }
+.about-hero h1 { font-size:clamp(56px,8vw,98px); line-height:.92; letter-spacing:-.065em; margin-bottom:32px; }
+.about-hero .about-lede { font-size:28px; color:#8f6247; }
+.about-hero > p { font-size:21px; line-height:1.65; color:var(--muted); }
+.about-hero h2 { font-size:clamp(32px,4.5vw,54px); line-height:1.1; letter-spacing:-.045em; margin:54px 0 32px; }
+.about-values { background:linear-gradient(135deg,#173c49,#102a38); color:white; border-radius:38px; padding:60px; display:grid; grid-template-columns:1fr 1fr; gap:70px; margin-bottom:24px; }
+.about-values h2 { font-size:52px; letter-spacing:-.05em; margin:0; }
+.about-values > p { color:rgba(255,255,255,.72); font-size:21px; line-height:1.6; margin:auto 0; }
+.founder-card { background:#fff; border:1px solid var(--line); border-radius:38px; padding:70px; text-align:center; margin-bottom:120px; }
+.founder-card h2 { font-size:64px; color:var(--teal); letter-spacing:-.055em; margin:10px 0 24px; }
+.founder-card p { max-width:760px; margin:0 auto 28px; font-size:20px; line-height:1.65; color:#8f6247; }
+.founder-intro { font-size:26px!important; }
+.built-in { margin-top:70px; color:var(--teal); font-size:20px; }
+.guide-page { max-width:1020px; margin:auto; }
+.back-link { display:inline-block; margin:10px 0 28px; font-weight:700; color:var(--teal); }
+.guide-page .page-head { max-width:880px; }
+.guide-stack { display:grid; gap:18px; margin-bottom:100px; }
+.guide-section { background:#fff; border:1px solid var(--line); border-radius:28px; padding:38px 42px; }
+.guide-kicker { margin:0 0 8px; font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:.13em; color:var(--sage); }
+.guide-section h2 { font-size:31px; letter-spacing:-.04em; margin-bottom:16px; color:#8f6247; }
+.guide-body p, .guide-body li { color:var(--muted); font-size:18px; line-height:1.62; }
+.guide-body ul { padding-left:22px; }
+@media (max-width:760px) {
+  .brand span { display:none; }
+  .brand-icon { width:32px; height:32px; }
+  .guide-grid { grid-template-columns:1fr; }
+  .guide-card { min-height:230px; }
+  .about-values { grid-template-columns:1fr; gap:24px; padding:38px 28px; }
+  .about-values h2 { font-size:42px; }
+  .founder-card { padding:42px 24px; }
+  .founder-card h2 { font-size:48px; }
+  .guide-section, .legal-section { padding:28px 24px; }
+  .page-icon { width:76px; height:76px; border-radius:18px; }
+}
