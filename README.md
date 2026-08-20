@@ -1,15 +1,15 @@
-# Tripix Website V8
+# Tripix website V9
 
-V8 is based directly on the supplied current V7 HTML/CSS/JS files.
+V9 is a clean CSS/JS refactor built directly from the current uploaded site files.
 
-Changes:
-- Trips and Share device artwork moved upward and fully contained within each section.
-- About, Privacy, Terms and Support header groups centred.
-- All individual Support guide header groups centred; Back to Support remains left aligned.
-- Support section headings centred for a consistent page axis.
-- Desktop feature story restored as a CSS sticky layout with simple browser-neutral JavaScript state switching.
-- Tablet/mobile feature story remains normal-flow cards for stability.
-- Favicon declarations refreshed with a V8 cache-buster plus shortcut/apple-touch declarations.
-- Main hero tracking increased slightly again.
+Key changes:
+- Removed accumulated V3–V8 override layers; every component is defined once.
+- Uses `overflow-x: clip` instead of `hidden` so sticky descendants keep the viewport as their scroll container.
+- Restored a single desktop sticky story implementation with Safari `-webkit-sticky` support and simple JS state switching.
+- Keeps a stacked, non-sticky story below 981px.
+- Moves the Trips and Share device images upward and prevents them being cut by the following section.
+- Centres About, Privacy, Terms, Support and all support-guide header groups; Back to Support remains left aligned.
+- Keeps the V7 transparent device artwork and current smaller device sizing.
+- Increases display tracking to prevent character collisions.
 
-Keep the existing GitHub Pages CNAME file when deploying.
+Keep the repository CNAME file when uploading.

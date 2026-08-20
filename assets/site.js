@@ -1,79 +1,102 @@
 const header = document.querySelector('[data-header]');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const desktopStory = window.matchMedia('(min-width: 981px)');
 
 function updateHeader() {
-  if (!header) return;
-  header.classList.toggle('scrolled', window.scrollY > 16);
+  if (header) header.classList.toggle('scrolled', window.scrollY > 16);
 }
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-/* Chrome-safe desktop story switching. Sticky positioning is CSS-only;
-   JavaScript merely picks whichever text step is closest to the viewport
-   centre and activates the matching phone screen. */
-const story = document.querySelector('[data-scroll-story]');
-const storySteps = story ? [...story.querySelectorAll('[data-story-step]')] : [];
-const storyScreens = story ? [...story.querySelectorAll('[data-story-screen]')] : [];
-
-function updateStory() {
-  if (!story || window.innerWidth <= 980 || reduceMotion || !storySteps.length) return;
-  const centre = window.innerHeight * 0.5;
-  let activeIndex = 0;
-  let bestDistance = Infinity;
-
-  storySteps.forEach((step, index) => {
-    const rect = step.getBoundingClientRect();
-    const stepCentre = rect.top + rect.height / 2;
-    const distance = Math.abs(stepCentre - centre);
-    if (distance < bestDistance) {
-      bestDistance = distance;
-      activeIndex = index;
-    }
-  });
-
-  storySteps.forEach((step, index) => step.classList.toggle('active', index === activeIndex));
-  const key = storySteps[activeIndex]?.dataset.storyStep;
-  storyScreens.forEach(screen => screen.classList.toggle('active', screen.dataset.storyScreen === key));
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
 }
 
-const parallax = [...document.querySelectorAll('[data-parallax]')];
-let ticking = false;
-
+/* Gentle parallax for the three standalone product images only. */
+const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
+let parallaxTicking = false;
 function updateParallax() {
-  if (reduceMotion || window.innerWidth <= 1100) {
-    parallax.forEach(el => { el.style.transform = ''; });
+  if (reduceMotion || window.innerWidth <= 980) {
+    parallaxEls.forEach((el) => { el.style.transform = ''; });
     return;
   }
   const vh = window.innerHeight;
-  parallax.forEach(el => {
+  parallaxEls.forEach((el) => {
     const rect = el.getBoundingClientRect();
-    const rate = Math.min(Number(el.dataset.parallax || 0.02), 0.025);
+    const rate = Math.min(Number(el.dataset.parallax || 0.02), 0.022);
     let delta = (rect.top + rect.height / 2 - vh / 2) * rate;
-    delta = Math.max(-16, Math.min(16, delta));
+    delta = Math.max(-12, Math.min(12, delta));
     el.style.transform = `translate3d(0, ${delta}px, 0)`;
   });
 }
-
-function requestUpdate() {
-  if (ticking) return;
+function requestParallax() {
+  if (parallaxTicking) return;
+  parallaxTicking = true;
   requestAnimationFrame(() => {
     updateParallax();
-    updateStory();
-    ticking = false;
+    parallaxTicking = false;
   });
-  ticking = true;
+}
+if (!reduceMotion) {
+  window.addEventListener('scroll', requestParallax, { passive: true });
+  window.addEventListener('resize', requestParallax, { passive: true });
+  requestParallax();
 }
 
-if (!reduceMotion) {
-  window.addEventListener('scroll', requestUpdate, { passive: true });
-  window.addEventListener('resize', requestUpdate, { passive: true });
-  requestUpdate();
+/* Desktop sticky story. CSS owns sticky positioning; JS only changes state.
+   Using viewport-centre distance avoids browser-specific IntersectionObserver
+   timing around sticky descendants. */
+const story = document.querySelector('[data-scroll-story]');
+const storySteps = story ? [...story.querySelectorAll('[data-story-step]')] : [];
+const storyScreens = story ? [...story.querySelectorAll('[data-story-screen]')] : [];
+let storyTicking = false;
+
+function setStoryActive(key) {
+  storySteps.forEach((step) => step.classList.toggle('active', step.dataset.storyStep === key));
+  storyScreens.forEach((screen) => screen.classList.toggle('active', screen.dataset.storyScreen === key));
+}
+
+function updateStory() {
+  if (!story || !storySteps.length || !desktopStory.matches || reduceMotion) return;
+  const targetY = window.innerHeight * 0.5;
+  let best = storySteps[0];
+  let bestDistance = Infinity;
+  storySteps.forEach((step) => {
+    const r = step.getBoundingClientRect();
+    const centre = r.top + r.height / 2;
+    const d = Math.abs(centre - targetY);
+    if (d < bestDistance) {
+      bestDistance = d;
+      best = step;
+    }
+  });
+  setStoryActive(best.dataset.storyStep);
+}
+function requestStory() {
+  if (storyTicking) return;
+  storyTicking = true;
+  requestAnimationFrame(() => {
+    updateStory();
+    storyTicking = false;
+  });
+}
+
+if (story && storySteps.length) {
+  setStoryActive(storySteps[0].dataset.storyStep);
+  if (!reduceMotion) {
+    window.addEventListener('scroll', requestStory, { passive: true });
+    window.addEventListener('resize', requestStory, { passive: true });
+    if (desktopStory.addEventListener) desktopStory.addEventListener('change', requestStory);
+    requestStory();
+  }
 }
