@@ -1,15 +1,19 @@
-# Tripix website V9
+# Tripix website V10
 
-V9 is a clean CSS/JS refactor built directly from the current uploaded site files.
+V10 is based directly on the clean V9 refactor.
 
-Key changes:
-- Removed accumulated V3–V8 override layers; every component is defined once.
-- Uses `overflow-x: clip` instead of `hidden` so sticky descendants keep the viewport as their scroll container.
-- Restored a single desktop sticky story implementation with Safari `-webkit-sticky` support and simple JS state switching.
-- Keeps a stacked, non-sticky story below 981px.
-- Moves the Trips and Share device images upward and prevents them being cut by the following section.
-- Centres About, Privacy, Terms, Support and all support-guide header groups; Back to Support remains left aligned.
-- Keeps the V7 transparent device artwork and current smaller device sizing.
-- Increases display tracking to prevent character collisions.
+## New global design controls
 
-Keep the repository CNAME file when uploading.
+At the top of `assets/styles.css`, inside `:root`, there are now two values intended for easy visual tuning:
+
+```css
+--display-letter-spacing: .02em;
+--device-scale: 1.25;
+```
+
+- `--display-letter-spacing` controls letter spacing for headings (`h1`, `h2`, `h3`) across the entire site.
+- `--device-scale` controls the visual scale of every Tripix phone/device image used in the homepage hero, Trips feature, sticky story, stacked story fallback, and Share feature. `1` = original V9 size, `1.25` = 25% larger.
+
+The device scaling uses the CSS individual `scale` property rather than `transform`, so it can coexist with the homepage parallax JavaScript.
+
+Keep your existing GitHub Pages `CNAME` file when deploying.

@@ -13,6 +13,8 @@
   --site-max:1180px;
   --page-max:1120px;
   --legal-max:1020px;
+  --display-letter-spacing:.02em;
+  --device-scale:1.25;
 }
 
 *{box-sizing:border-box}
@@ -27,7 +29,8 @@ body{
 }
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
-h1,h2,h3,p,figure{margin-top:0}
+h1,h2,h3{margin-top:0;letter-spacing:var(--display-letter-spacing)}
+p,figure{margin-top:0}
 
 /* Header */
 .site-header{position:fixed;inset:0 0 auto;z-index:100;border-bottom:1px solid transparent;transition:background .28s,border-color .28s}
@@ -41,17 +44,23 @@ h1,h2,h3,p,figure{margin-top:0}
 .section-pad{padding-left:max(24px,calc((100vw - var(--site-max))/2));padding-right:max(24px,calc((100vw - var(--site-max))/2))}
 .eyebrow{text-transform:uppercase;letter-spacing:.145em;font-weight:760;font-size:12px;color:var(--teal);margin:0 0 20px}.eyebrow.light{color:#b7d3cb}
 
-/* Marketing typography */
-.hero h1{font-size:clamp(58px,7vw,100px);line-height:.94;letter-spacing:.032em;margin-bottom:30px;max-width:760px}
+/* Marketing typography — heading tracking is controlled globally by
+   --display-letter-spacing in :root. */
+.hero h1{font-size:clamp(58px,7vw,100px);line-height:.94;margin-bottom:30px;max-width:760px}
 h1 span,h2 span{color:var(--teal)}
-.statement h2,.section-heading h2,.split-copy h2,.share-copy h2,.story-step h2,.final-cta h2,.privacy-band h2,.about-hero h1,.subpage .page-head h1{letter-spacing:.014em}
 
 /* Hero */
 .hero{min-height:860px;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(36px,5vw,72px);align-items:center;padding-top:118px;padding-bottom:70px;background:radial-gradient(circle at 76% 55%,rgba(148,179,165,.25),transparent 29%),radial-gradient(circle at 85% 73%,rgba(241,211,188,.22),transparent 24%)}
 .hero-copy{position:relative;z-index:3}.hero-lede{max-width:650px;font-size:clamp(19px,2vw,24px);line-height:1.48;color:var(--muted);letter-spacing:-.01em}
 .hero-actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{padding:14px 20px;border-radius:999px;font-size:15px;font-weight:680}.button.primary{background:var(--dark);color:#fff}.button.secondary{background:rgba(255,255,255,.82);border:1px solid var(--line)}
 .hero-stage{min-height:610px;position:relative;display:flex;justify-content:center;align-items:center}.hero-halo{position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(95,143,149,.25),transparent 70%);filter:blur(4px)}
-.product-shot{margin:0;position:relative;will-change:transform;filter:drop-shadow(0 28px 42px rgba(12,38,51,.20))}.hero-shot{width:min(300px,25vw)}.hero-shot img{width:100%;height:auto}
+.product-shot{margin:0;position:relative;will-change:transform;filter:drop-shadow(0 28px 42px rgba(12,38,51,.20))}
+/* All phone/device artwork is scaled from one global control.
+   Change --device-scale in :root (1 = 100%, 1.25 = 125%).
+   The individual `scale` property is intentionally used instead of
+   `transform` so it composes safely with the parallax transform in JS. */
+.hero-shot,.trips-shot,.share-device,.story-screen,.story-inline-screen{scale:var(--device-scale);transform-origin:center center}
+.hero-shot{width:min(300px,25vw)}.hero-shot img{width:100%;height:auto}
 
 .statement{text-align:center;padding-top:145px;padding-bottom:155px}.statement h2,.section-heading h2{font-size:clamp(44px,6vw,78px);line-height:1.01;margin:0 auto;max-width:1080px}.statement>p:last-child{max-width:760px;margin:32px auto 0;color:var(--muted);font-size:20px;line-height:1.55}
 
@@ -104,11 +113,11 @@ h1 span,h2 span{color:var(--teal)}
 }
 
 @media(max-width:720px){
-  .nav-links{display:none}.nav-cta{margin-left:auto}.brand span{display:none}.brand-icon{width:32px;height:32px;flex-basis:32px}.subpage.section-pad{padding-left:20px;padding-right:20px}.hero h1{letter-spacing:.034em}.hero-shot{width:min(205px,56vw)}.trips-shot,.share-device{width:min(195px,55vw)}.story-inline-screen{width:min(185px,53vw)}
+  .nav-links{display:none}.nav-cta{margin-left:auto}.brand span{display:none}.brand-icon{width:32px;height:32px;flex-basis:32px}.subpage.section-pad{padding-left:20px;padding-right:20px}.hero-shot{width:min(205px,56vw)}.trips-shot,.share-device{width:min(195px,55vw)}.story-inline-screen{width:min(185px,53vw)}
   .statement{padding-top:105px;padding-bottom:110px}.insight-strip{padding-top:105px;padding-bottom:110px}.editorial-card{padding:30px;border-radius:30px;min-height:460px}.anniversary-badge{width:270px;height:270px;right:-65px;bottom:-70px}.privacy-band{padding-top:95px;padding-bottom:95px}.footer-wrap{align-items:flex-start;flex-direction:column}.footer-wrap nav{margin-left:0;flex-wrap:wrap}.footer-wrap>span{margin-left:0}
   .about-values{grid-template-columns:1fr;gap:24px;padding:38px 28px}.founder-card{padding:42px 24px}.guide-grid{grid-template-columns:1fr}.guide-section,.legal-section{padding:30px 26px}.guide-body p,.guide-body li,.legal-section p,.legal-section li{font-size:17px}.privacy-hero-card{padding:32px 28px;border-radius:28px}.page-icon{width:76px;height:76px;border-radius:18px}
 }
 
-@media(max-width:520px){.nav-cta{display:none}.nav-wrap{height:58px}.brand{font-size:20px}.hero h1{letter-spacing:.036em}.hero-shot{width:min(185px,58vw)}.trips-shot,.share-device{width:min(180px,57vw)}.story-inline-screen{width:min(170px,55vw)}}
+@media(max-width:520px){.nav-cta{display:none}.nav-wrap{height:58px}.brand{font-size:20px}.hero-shot{width:min(185px,58vw)}.trips-shot,.share-device{width:min(180px,57vw)}.story-inline-screen{width:min(170px,55vw)}}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.story-screen{display:none;opacity:1;transform:none}.story-screen.active{display:block}.story-step{opacity:1;transform:none}}
