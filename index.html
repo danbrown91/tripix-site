@@ -1,12 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tripix: Travel Tracker</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tripix turns the memories already in your photo library into a beautiful record of your travels — automatically, privately, and on-device." />
+  <meta name="theme-color" content="#eef4f6" />
+  <title>Tripix — Turn photos into travel stories</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="assets/site.js"></script>
 </head>
 <body>
-    <h1>Tripix</h1>
-    <p>Turn photos into travel stories.</p>
+  <header class="site-header" data-header>
+    <div class="nav-wrap">
+      <a class="brand" href="./" aria-label="Tripix home">Tripix</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="support/">Support</a>
+      </nav>
+      <a class="nav-cta is-disabled" href="#download" aria-disabled="true">Coming to the App Store</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-pad">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Meet Tripix</p>
+        <h1>Turn photos into<br><span>travel stories.</span></h1>
+        <p class="hero-lede">Your photo library already holds the story of where you’ve been. Tripix brings it together — your journeys, places, milestones and memories, beautifully organised on your iPhone.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#features">Explore Tripix</a>
+          <a class="button secondary" href="#privacy">Built for privacy</a>
+        </div>
+      </div>
+
+      <div class="hero-stage" aria-label="Tripix map screen">
+        <div class="hero-halo" aria-hidden="true"></div>
+        <figure class="product-shot hero-shot" data-parallax="0.045">
+          <img src="assets/screens/tripix-1.png" alt="Tripix interactive travel map showing trips across Europe" />
+        </figure>
+      </div>
+    </section>
+
+    <section id="features" class="statement section-pad reveal">
+      <p class="eyebrow">Your journeys, rediscovered</p>
+      <h2>No diaries. No manual logging.<br><span>Just the memories you already have.</span></h2>
+      <p>Tripix uses the dates and locations stored with your photos to turn years of memories into a travel history you can explore.</p>
+    </section>
+
+    <section class="split-feature section-pad">
+      <div class="split-copy reveal">
+        <p class="eyebrow">Every adventure in one place</p>
+        <h2>Your trips.<br><span>Ready to revisit.</span></h2>
+        <p>From a long weekend to a once-in-a-lifetime journey, Tripix groups your photos into trips automatically and gives every adventure a home.</p>
+      </div>
+      <figure class="product-shot trips-shot reveal" data-parallax="0.025">
+        <img src="assets/screens/tripix-2.png" alt="Tripix Trips screen with travel cards for Amsterdam, Val Thorens, Caribbean and Singapore" loading="lazy" />
+      </figure>
+    </section>
+
+    <section class="scroll-story" data-scroll-story>
+      <div class="scroll-story-inner section-pad">
+        <div class="story-visual" aria-live="polite">
+          <div class="story-glow" aria-hidden="true"></div>
+          <figure class="story-screen active" data-story-screen="journey">
+            <img src="assets/screens/tripix-3.png" alt="Tripix trip detail showing a Caribbean journey, map, segments, countries and achievements" loading="lazy" />
+          </figure>
+          <figure class="story-screen" data-story-screen="achievements">
+            <img src="assets/screens/tripix-4.png" alt="Tripix Achievements screen showing continents visited and flags collected" loading="lazy" />
+          </figure>
+          <figure class="story-screen" data-story-screen="insights">
+            <img src="assets/screens/tripix-5.png" alt="Tripix Travel Insights showing favourite places, busiest year and travel records" loading="lazy" />
+          </figure>
+        </div>
+
+        <div class="story-copy">
+          <article class="story-step active" data-story-step="journey">
+            <p class="eyebrow light">Relive the whole journey</p>
+            <h2>Every stop.<br>Every chapter.</h2>
+            <p>Open a trip and see the route you took, the places you visited, the photos you captured and what that journey added to your travel story.</p>
+          </article>
+
+          <article class="story-step" data-story-step="achievements">
+            <p class="eyebrow light">Collect the world</p>
+            <h2>Milestones worth remembering.</h2>
+            <p>Watch your map grow into something more. Collect flags, track continents and unlock achievements as your travels take you further.</p>
+          </article>
+
+          <article class="story-step" data-story-step="insights">
+            <p class="eyebrow light">Your story in numbers</p>
+            <h2>Discover the traveller you’ve become.</h2>
+            <p>See the places you return to, your busiest years, longest adventures, most photographed destinations and the records hidden across your library.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="insight-strip section-pad">
+      <div class="section-heading reveal">
+        <p class="eyebrow">A reason to come back</p>
+        <h2>Your memories don’t stop being interesting when the trip ends.</h2>
+      </div>
+
+      <div class="editorial-grid">
+        <article class="editorial-card memory-card reveal">
+          <div class="editorial-copy">
+            <span class="card-kicker">On This Day</span>
+            <h3>Rediscover somewhere you were years ago today.</h3>
+            <p>Tripix can bring a past adventure back to the surface on its anniversary — a small reason to revisit the moments you’d forgotten.</p>
+          </div>
+          <div class="anniversary-badge" aria-hidden="true">
+            <small>8 years ago</small>
+            <strong>Barcelona</strong>
+          </div>
+        </article>
+
+        <article class="editorial-card private-card reveal">
+          <span class="privacy-lock" aria-hidden="true">⌁</span>
+          <div class="editorial-copy">
+            <span class="card-kicker">Private by design</span>
+            <h3>Your photo library stays on your iPhone.</h3>
+            <p>Tripix analyses the information it needs on your device. Your photos don’t need to be uploaded to Tripix just to understand where you’ve been.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="share-feature section-pad">
+      <div class="share-copy reveal">
+        <p class="eyebrow">Made to share</p>
+        <h2>Turn a journey into something worth sharing.</h2>
+        <p>Create a visual travel story from your trip — map, route, countries, photos, milestones and all.</p>
+      </div>
+      <figure class="share-device reveal" data-parallax="0.02">
+        <img src="assets/screens/tripix-6.png" alt="Tripix Share Trip screen showing a Caribbean journey map and travel statistics" loading="lazy" />
+      </figure>
+    </section>
+
+    <section id="privacy" class="privacy-band section-pad">
+      <div class="privacy-inner reveal">
+        <div>
+          <p class="eyebrow light">Privacy, by design</p>
+          <h2>Your photos stay<br>your photos.</h2>
+        </div>
+        <div class="privacy-copy">
+          <p>Your photo library contains years of personal memories. Tripix is designed to analyse your travel history on your device rather than requiring those photos to be sent away just to organise your journeys.</p>
+          <a href="privacy/">Read the Privacy Policy <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="final-cta section-pad reveal">
+      <p class="eyebrow">Tripix for iPhone</p>
+      <h2>Your travel story is already there.<br><span>Come and rediscover it.</span></h2>
+      <p>Launching soon on the App Store.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-wrap">
+      <strong>Tripix</strong>
+      <nav aria-label="Footer navigation">
+        <a href="privacy/">Privacy Policy</a>
+        <a href="terms/">Terms of Use</a>
+        <a href="support/">Support</a>
+      </nav>
+      <span>© 2026 Tripix</span>
+    </div>
+  </footer>
 </body>
 </html>
