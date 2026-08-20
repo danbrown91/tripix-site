@@ -14,7 +14,7 @@
   --page-max:1120px;
   --legal-max:1020px;
   --display-letter-spacing:.02em;
-  --device-scale:1.00;
+  --device-scale:0.80;
 }
 
 *{box-sizing:border-box}
