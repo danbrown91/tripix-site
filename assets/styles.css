@@ -1385,3 +1385,208 @@ summary::-webkit-details-marker{display:none}details p{color:var(--muted);line-h
     max-width: 170px !important;
   }
 }
+
+/* ==========================================================
+   V8 — alignment, device positioning and Chrome-safe story
+   ========================================================== */
+
+/* Trips + Share: keep current size, but place the complete device
+   comfortably inside the section instead of hanging into the next one. */
+.split-feature,
+.share-feature {
+  align-items: center;
+  padding-bottom: 70px;
+}
+.trips-shot,
+.share-device {
+  align-self: center !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  position: relative;
+  top: -34px;
+}
+
+/* All top-level secondary-page header groups share the same centre axis. */
+.about-hero,
+.support-page .page-head,
+.legal-page .page-head {
+  text-align: center !important;
+}
+.about-hero h1,
+.support-page .page-head h1,
+.legal-page .page-head h1 {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.support-page .page-head .page-icon,
+.legal-page .page-head .page-icon {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.support-page .page-head p:last-child,
+.legal-page .page-head p:last-child {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.legal-meta {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Support topic headers are centred as a complete group. Back navigation
+   deliberately remains left aligned and separate from the page heading. */
+.guide-page .page-head {
+  text-align: center !important;
+  max-width: var(--page-max) !important;
+}
+.guide-page .page-head h1,
+.guide-page .page-head p:last-child {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.guide-page .page-head p:last-child {
+  max-width: 900px !important;
+}
+
+/* Support landing sub-headings use the same visual centre line. */
+.support-guides .section-heading,
+.faq-section .section-heading {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Desktop sticky story. Avoid transformed/overflowing ancestors and use one
+   simple sticky column; JS only changes the active screen/copy state. */
+@media (min-width: 981px) {
+  .scroll-story {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  .scroll-story-inner {
+    display: grid !important;
+    grid-template-columns: minmax(300px, .78fr) minmax(0, 1.12fr) !important;
+    gap: clamp(64px, 8vw, 118px) !important;
+    max-width: var(--site-max) !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+    align-items: start !important;
+    overflow: visible !important;
+  }
+  .story-visual {
+    display: flex !important;
+    position: sticky !important;
+    top: 64px !important;
+    height: calc(100vh - 64px) !important;
+    min-height: 620px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    z-index: 2;
+  }
+  .story-glow {
+    display: block !important;
+    width: min(480px, 38vw) !important;
+    height: min(480px, 38vw) !important;
+    left: 50%;
+    top: 50%;
+    bottom: auto !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .story-screen {
+    display: flex !important;
+    position: absolute !important;
+    inset: auto !important;
+    width: min(245px, 20vw) !important;
+    height: auto !important;
+    max-width: 245px !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    transform: translateY(18px) scale(.985) !important;
+    transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1) !important;
+    pointer-events: none;
+  }
+  .story-screen img {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .story-screen.active {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
+  .story-copy {
+    display: block !important;
+    padding: 0 !important;
+  }
+  .story-step,
+  .story-step.active,
+  .story-step:nth-child(even) {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+    max-width: 620px !important;
+    margin: 0 !important;
+    padding: 90px 0 !important;
+    text-align: left !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+    opacity: .32 !important;
+    transform: none !important;
+    transition: opacity .35s ease !important;
+  }
+  .story-step.active {
+    opacity: 1 !important;
+  }
+  .story-step .eyebrow,
+  .story-step h2,
+  .story-step > p:last-of-type {
+    align-self: auto !important;
+    grid-area: auto !important;
+  }
+  .story-step h2 {
+    font-size: clamp(44px, 4.6vw, 68px) !important;
+    margin-bottom: 22px !important;
+  }
+  .story-step > p:last-of-type {
+    max-width: 590px !important;
+    margin-bottom: 0 !important;
+  }
+  .story-inline-screen {
+    display: none !important;
+  }
+}
+
+/* Smaller displays get the stable, normal-flow story cards. */
+@media (max-width: 980px) {
+  .trips-shot,
+  .share-device {
+    top: 0;
+    margin-top: 28px !important;
+    margin-bottom: 0 !important;
+  }
+  .split-feature,
+  .share-feature {
+    padding-bottom: 72px;
+  }
+  .scroll-story {
+    padding: 74px 0 88px !important;
+  }
+  .scroll-story-inner {
+    display: block !important;
+  }
+  .story-visual {
+    display: none !important;
+  }
+  .story-step,
+  .story-step.active,
+  .story-step:nth-child(even) {
+    opacity: 1 !important;
+  }
+}
+
+/* Keep the main display face comfortable at large sizes. */
+.hero h1 { letter-spacing: .032em !important; }

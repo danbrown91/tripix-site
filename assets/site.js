@@ -16,9 +16,34 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* V6 deliberately removes the scroll-state switching used by the old
-   sticky story. The story is now normal document flow; only the gentle
-   product parallax remains on roomy desktop layouts. */
+/* Chrome-safe desktop story switching. Sticky positioning is CSS-only;
+   JavaScript merely picks whichever text step is closest to the viewport
+   centre and activates the matching phone screen. */
+const story = document.querySelector('[data-scroll-story]');
+const storySteps = story ? [...story.querySelectorAll('[data-story-step]')] : [];
+const storyScreens = story ? [...story.querySelectorAll('[data-story-screen]')] : [];
+
+function updateStory() {
+  if (!story || window.innerWidth <= 980 || reduceMotion || !storySteps.length) return;
+  const centre = window.innerHeight * 0.5;
+  let activeIndex = 0;
+  let bestDistance = Infinity;
+
+  storySteps.forEach((step, index) => {
+    const rect = step.getBoundingClientRect();
+    const stepCentre = rect.top + rect.height / 2;
+    const distance = Math.abs(stepCentre - centre);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      activeIndex = index;
+    }
+  });
+
+  storySteps.forEach((step, index) => step.classList.toggle('active', index === activeIndex));
+  const key = storySteps[activeIndex]?.dataset.storyStep;
+  storyScreens.forEach(screen => screen.classList.toggle('active', screen.dataset.storyScreen === key));
+}
+
 const parallax = [...document.querySelectorAll('[data-parallax]')];
 let ticking = false;
 
@@ -41,6 +66,7 @@ function requestUpdate() {
   if (ticking) return;
   requestAnimationFrame(() => {
     updateParallax();
+    updateStory();
     ticking = false;
   });
   ticking = true;
