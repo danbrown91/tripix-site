@@ -121,3 +121,107 @@ h1 span,h2 span{color:var(--teal)}
 @media(max-width:520px){.nav-cta{display:none}.nav-wrap{height:58px}.brand{font-size:20px}.hero-shot{width:min(185px,58vw)}.trips-shot,.share-device{width:min(180px,57vw)}.story-inline-screen{width:min(170px,55vw)}}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.story-screen{display:none;opacity:1;transform:none}.story-screen.active{display:block}.story-step{opacity:1;transform:none}}
+
+/* ==========================================================
+   V11 — mobile navigation
+   ========================================================== */
+.mobile-menu-button,
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .brand span {
+    display: inline;
+  }
+
+  .mobile-menu-button {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    margin-left: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-menu-button span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--text);
+    transition: transform .25s ease, opacity .25s ease;
+  }
+
+  .mobile-menu {
+    display: flex;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 16px;
+    right: 16px;
+    z-index: 101;
+    padding: 12px;
+    flex-direction: column;
+    background: rgba(244,247,247,.97);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(16,42,56,.14);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px) scale(.985);
+    transform-origin: top center;
+    transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  .mobile-menu a {
+    padding: 15px 14px;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 650;
+  }
+
+  .mobile-menu a:active {
+    background: rgba(95,143,149,.10);
+  }
+
+  .mobile-menu-coming {
+    margin-top: 8px;
+    padding: 15px 14px 8px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .mobile-menu-button.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .mobile-menu-button.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-menu-button.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}

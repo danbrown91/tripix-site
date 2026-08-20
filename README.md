@@ -17,3 +17,9 @@ At the top of `assets/styles.css`, inside `:root`, there are now two values inte
 The device scaling uses the CSS individual `scale` property rather than `transform`, so it can coexist with the homepage parallax JavaScript.
 
 Keep your existing GitHub Pages `CNAME` file when deploying.
+
+## V11
+- Added responsive mobile navigation across every page.
+- Mobile header now keeps the Tripix icon and Tripix wordmark visible.
+- Hamburger animates to a close icon and opens a consistent site menu.
+- Menu closes after navigation, on outside click, Escape, or desktop resize.
