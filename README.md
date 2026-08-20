@@ -1,7 +1,5 @@
-# Tripix website V3
+# Tripix website — V4
 
-Deployment package for GitHub Pages.
+V4 keeps the V3 homepage and rebuilds the secondary-page layout for desktop, tablet and mobile. It fixes the constrained-width issue on support guides and legal pages, refreshes Terms and Privacy styling, and updates the Privacy FAQ wording.
 
-Upload/replace `index.html`, `assets/`, `support/`, `terms/`, and `about/`.
-
-Do **not** replace the existing `privacy/` folder or `CNAME` file in the live repository.
+When deploying to the existing GitHub Pages repository, keep the existing `CNAME` file.
