@@ -1,17 +1,13 @@
-# Tripix website V5
+# Tripix website V7
 
-V5 is a targeted responsive/layout pass based on the live-site screen recording.
+V7 uses the new tightly-cropped transparent Tripix device screenshots supplied on 20 August 2026.
 
-Changes include:
-- smaller viewport-aware product/device screenshots
-- capped desktop parallax so imagery cannot drift outside its section
-- deterministic desktop scroll-story transitions (no competing observers)
-- static self-contained story panels on tablet/mobile instead of sticky choreography
-- wider and explicitly aligned About content
-- one shared centred width for Privacy and Terms
-- consistent Support landing widths and alignment
-- much wider Support topic/article layout
-- slightly more open letter spacing on large display headings
-- existing V4 content, FAQ, legal copy and app icon retained
+Changes from V6:
+- Replaced all six homepage device screenshots with the new transparent PNGs.
+- Re-tuned device sizing around the visible phone bounds rather than the previous marketing-image canvas.
+- Reduced device sizes substantially at desktop, laptop, tablet and mobile widths.
+- Increased display-heading tracking, especially the homepage hero title, to prevent glyph collisions around characters such as `r`.
 
-Keep the existing GitHub Pages `CNAME` file when deploying.
+Deployment:
+- Upload/replace the V7 files in the GitHub Pages repository.
+- Keep the existing root `CNAME` file untouched.
