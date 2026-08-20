@@ -640,3 +640,312 @@ summary::-webkit-details-marker{display:none}details p{color:var(--muted);line-h
   .legal-section li { font-size: 17px; }
   .privacy-hero-card { padding: 32px 28px; border-radius: 28px; }
 }
+
+/* ============================================================
+   V5 — responsive product imagery, stable scroll story, and
+   explicit secondary-page alignment/width system
+   ============================================================ */
+
+/* Large display type: retain the tight editorial feel without
+   allowing characters (especially r) to visually collide. */
+.hero h1 { letter-spacing: -0.018em; }
+.statement h2,
+.section-heading h2,
+.final-cta h2 { letter-spacing: -0.022em; }
+.split-copy h2,
+.share-copy h2,
+.story-step h2,
+.privacy-band h2 { letter-spacing: -0.022em; }
+.subpage .page-head h1,
+.about-hero h1 { letter-spacing: -0.022em; }
+
+/* Product imagery: size by available height as well as width so
+   phones never overwhelm a laptop or shorter desktop viewport. */
+.hero-stage {
+  min-height: 640px;
+  height: min(78vh, 760px);
+}
+.hero-shot {
+  width: auto;
+  height: min(70vh, 680px);
+  max-width: 44vw;
+}
+.hero-shot img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.split-feature {
+  min-height: 820px;
+  padding-top: 90px;
+}
+.trips-shot {
+  width: auto;
+  height: min(68vh, 650px);
+  max-width: 44vw;
+  margin-bottom: -48px;
+}
+.trips-shot img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.share-feature {
+  min-height: 820px;
+  padding-top: 90px;
+}
+.share-device {
+  width: auto;
+  height: min(68vh, 650px);
+  max-width: 44vw;
+  margin-bottom: -48px;
+}
+.share-device img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Desktop scroll story: one bounded, stable sticky visual. */
+.scroll-story-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  grid-template-columns: minmax(360px, .9fr) minmax(420px, 1.1fr);
+  gap: clamp(56px, 7vw, 100px);
+}
+.story-visual {
+  top: 64px;
+  height: calc(100vh - 64px);
+  min-height: 600px;
+  align-items: center;
+  overflow: hidden;
+}
+.story-screen {
+  bottom: auto;
+  width: auto;
+  height: min(72vh, 660px);
+  max-width: 42vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(28px) scale(.975);
+}
+.story-screen img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+.story-screen.active { transform: translateY(0) scale(1); }
+.story-glow {
+  width: min(540px, 42vw);
+  height: min(540px, 42vw);
+  bottom: 50%;
+  transform: translateY(50%);
+}
+.story-step {
+  min-height: 92vh;
+  max-width: 620px;
+  padding: 80px 0;
+}
+.story-inline-screen { display: none; }
+
+/* Secondary pages: use explicit viewport-aware shells. This avoids
+   inherited homepage padding/max-width rules fighting each other. */
+.subpage.section-pad {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding-left: clamp(24px, 5vw, 80px) !important;
+  padding-right: clamp(24px, 5vw, 80px) !important;
+}
+
+.subpage .page-head {
+  width: min(1040px, calc(100vw - 96px));
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.subpage .page-head p:last-child { max-width: 860px; }
+
+/* About */
+.about-page { max-width: none !important; }
+.about-hero {
+  width: min(1080px, calc(100vw - 96px));
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-hero > p {
+  max-width: 930px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-hero h2 { max-width: 1000px; margin-left: auto; margin-right: auto; }
+.about-values,
+.founder-card {
+  width: min(1080px, calc(100vw - 96px));
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.founder-card p { max-width: 880px; }
+
+/* Support landing */
+.support-page { max-width: none !important; }
+.support-page .page-head,
+.support-guides,
+.faq-section,
+.contact-card {
+  width: min(1060px, calc(100vw - 96px));
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.support-guides { margin-top: 30px; margin-bottom: 108px; }
+.support-guides .section-heading { max-width: 920px; }
+.guide-grid { width: 100%; }
+.contact-card { margin-top: 70px; }
+
+/* Support topic articles */
+.guide-page { max-width: none !important; }
+.guide-page .back-link,
+.guide-page .page-head,
+.guide-page .guide-stack {
+  width: min(1120px, calc(100vw - 96px));
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.guide-page .back-link { display: block; }
+.guide-page .page-head { text-align: left; }
+.guide-page .page-head p:last-child { margin-left: 0; margin-right: 0; max-width: 850px; }
+.guide-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.guide-section { min-width: 0; }
+
+/* Legal pages — every element shares the same centre line and width. */
+.legal-page { max-width: none !important; }
+.legal-page .page-head,
+.privacy-hero-card,
+.legal-stack {
+  width: min(1000px, calc(100vw - 96px));
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.legal-page .page-head { text-align: center; }
+.privacy-hero-card { margin-bottom: 24px; }
+.legal-stack { display: grid; }
+
+/* Laptop sizing */
+@media (max-width: 1180px) {
+  .hero-stage { min-height: 570px; height: 68vh; }
+  .hero-shot { height: min(62vh, 590px); max-width: 42vw; }
+  .trips-shot,
+  .share-device { height: min(60vh, 570px); max-width: 42vw; }
+  .story-screen { height: min(64vh, 570px); max-width: 39vw; }
+  .story-step { min-height: 88vh; }
+}
+
+/* Tablet and mobile: stop using the sticky cross-fade sequence entirely.
+   Each feature becomes a normal self-contained story panel. */
+@media (max-width: 900px) {
+  .hero-stage { min-height: 0; height: auto; padding-top: 40px; }
+  .hero-shot { width: min(390px, 72vw); height: auto; max-width: 100%; }
+  .hero-shot img { width: 100%; height: auto; }
+
+  .split-feature,
+  .share-feature { min-height: auto; }
+  .trips-shot,
+  .share-device {
+    width: min(390px, 72vw);
+    height: auto;
+    max-width: 100%;
+    margin-bottom: -36px;
+  }
+  .trips-shot img,
+  .share-device img { width: 100%; height: auto; }
+
+  .scroll-story { padding: 74px 0 88px; }
+  .scroll-story-inner {
+    display: block;
+    max-width: none;
+    padding: 0 clamp(20px, 5vw, 48px);
+  }
+  .story-visual { display: none; }
+  .story-copy { padding: 0; }
+  .story-step,
+  .story-step.active {
+    min-height: 0;
+    max-width: 760px;
+    margin: 0 auto 28px;
+    padding: 48px clamp(24px, 5vw, 48px) 0;
+    text-align: center;
+    opacity: 1;
+    transform: none;
+    border-radius: 32px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.08);
+    overflow: hidden;
+  }
+  .story-inline-screen {
+    display: block;
+    width: min(330px, 72vw);
+    margin: 36px auto -34px;
+    filter: drop-shadow(0 26px 38px rgba(0,0,0,.24));
+  }
+  .story-inline-screen img { width: 100%; height: auto; }
+
+  .guide-stack { grid-template-columns: 1fr; }
+  .guide-stack .guide-section:last-child:nth-child(odd) { grid-column: auto; }
+}
+
+@media (max-width: 720px) {
+  .subpage.section-pad { padding-left: 20px !important; padding-right: 20px !important; }
+  .subpage .page-head,
+  .about-hero,
+  .about-values,
+  .founder-card,
+  .support-page .page-head,
+  .support-guides,
+  .faq-section,
+  .contact-card,
+  .guide-page .back-link,
+  .guide-page .page-head,
+  .guide-page .guide-stack,
+  .legal-page .page-head,
+  .privacy-hero-card,
+  .legal-stack {
+    width: 100%;
+  }
+  .hero-shot,
+  .trips-shot,
+  .share-device { width: min(315px, 82vw); }
+  .story-inline-screen { width: min(290px, 76vw); }
+  .about-values,
+  .founder-card { border-radius: 30px; }
+}
+
+@media (max-width: 520px) {
+  .hero h1,
+  .statement h2,
+  .section-heading h2,
+  .split-copy h2,
+  .share-copy h2,
+  .story-step h2,
+  .final-cta h2,
+  .subpage .page-head h1,
+  .about-hero h1 { letter-spacing: -0.012em; }
+  .hero-shot,
+  .trips-shot,
+  .share-device { width: min(285px, 84vw); }
+  .story-step { padding-left: 22px; padding-right: 22px; }
+  .story-inline-screen { width: min(270px, 78vw); }
+}
